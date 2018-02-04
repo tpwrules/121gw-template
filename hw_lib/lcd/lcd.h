@@ -20,4 +20,12 @@ void lcd_update();
 #define LCD_SEGSET(seg, val)\
     (val ? LCD_SEGON(seg) : LCD_SEGOFF(seg))
 
+// set a character on the LCD
+// 0-4: sub screen, left to right
+// 5-9: main screen, left to right
+void lcd_set_char(uint8_t where, char c);
+// write a string to a screen
+// 0: main, 1: sub
+void lcd_put_str(uint8_t on_subscreen, char* s);
+
 #endif

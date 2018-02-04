@@ -142,13 +142,10 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
     
-    LCD_SEGON(SEG_ICON_DANGER);
+    lcd_put_str(1, "HELLO");
+    lcd_put_str(0, "World");
     lcd_update();
-    HAL_Delay(500);
-
-    LCD_SEGOFF(SEG_ICON_DANGER);
-    lcd_update();
-    HAL_Delay(500);
+    while(1);
 
   }
   /* USER CODE END 3 */
