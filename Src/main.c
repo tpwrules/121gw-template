@@ -265,12 +265,12 @@ static void MX_LCD_Init(void)
 {
 
   hlcd.Instance = LCD;
-  hlcd.Init.Prescaler = LCD_PRESCALER_4;
+  hlcd.Init.Prescaler = LCD_PRESCALER_8;
   hlcd.Init.Divider = LCD_DIVIDER_16;
   hlcd.Init.Duty = LCD_DUTY_1_4;
   hlcd.Init.Bias = LCD_BIAS_1_3;
   hlcd.Init.VoltageSource = LCD_VOLTAGESOURCE_INTERNAL;
-  hlcd.Init.Contrast = LCD_CONTRASTLEVEL_4;
+  hlcd.Init.Contrast = LCD_CONTRASTLEVEL_5;
   hlcd.Init.DeadTime = LCD_DEADTIME_0;
   hlcd.Init.PulseOnDuration = LCD_PULSEONDURATION_4;
   hlcd.Init.MuxSegment = LCD_MUXSEGMENT_DISABLE;
