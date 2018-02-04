@@ -1,1 +1,8 @@
 .DS_Store
+/Debug/*
+/Release/*
+
+!/Debug/EEVBlog.bin
+!/Debug/EEVBlog.elf
+!/Release/EEVBlog.bin
+!/Release/EEVBlog.elf
