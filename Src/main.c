@@ -47,6 +47,8 @@
 
 /* USER CODE BEGIN Includes */
 
+#include "lcd/lcd.h"
+
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -140,14 +142,12 @@ int main(void)
 
   /* USER CODE BEGIN 3 */
     
-    HAL_LCD_Write(&hlcd, LCD_RAM_REGISTER6, 0, 0x10000|0x200);
-    HAL_LCD_Write(&hlcd, LCD_RAM_REGISTER0, 0, 2);
-    HAL_LCD_UpdateDisplayRequest(&hlcd);
+    LCD_SEGON(SEG_ICON_DANGER);
+    lcd_update();
     HAL_Delay(500);
 
-    HAL_LCD_Write(&hlcd, LCD_RAM_REGISTER6, 0, 0x800);
-    HAL_LCD_Write(&hlcd, LCD_RAM_REGISTER0, 0, 0);
-    HAL_LCD_UpdateDisplayRequest(&hlcd);
+    LCD_SEGOFF(SEG_ICON_DANGER);
+    lcd_update();
     HAL_Delay(500);
 
   }
