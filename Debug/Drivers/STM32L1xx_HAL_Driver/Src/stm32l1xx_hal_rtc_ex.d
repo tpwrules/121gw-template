@@ -1,8 +1,5 @@
-Middlewares/Third_Party/FatFs/src/option/syscall.o: \
- ../Middlewares/Third_Party/FatFs/src/option/syscall.c \
- ../Middlewares/Third_Party/FatFs/src/option/../ff.h \
- ../Middlewares/Third_Party/FatFs/src/option/../integer.h \
- /Users/thomaswatson/projects/121gw/121gw-template/Inc/ffconf.h \
+Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_rtc_ex.o: \
+ ../Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_rtc_ex.c \
  /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h \
  /Users/thomaswatson/projects/121gw/121gw-template/Inc/stm32l1xx_hal_conf.h \
  /Users/thomaswatson/projects/121gw/121gw-template/Inc/main.h \
@@ -35,14 +32,7 @@ Middlewares/Third_Party/FatFs/src/option/syscall.o: \
  /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_ll_sdmmc.h \
  /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim.h \
  /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim_ex.h \
- /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_uart.h \
- /Users/thomaswatson/projects/121gw/121gw-template/Inc/bsp_driver_sd.h
-
-../Middlewares/Third_Party/FatFs/src/option/../ff.h:
-
-../Middlewares/Third_Party/FatFs/src/option/../integer.h:
-
-/Users/thomaswatson/projects/121gw/121gw-template/Inc/ffconf.h:
+ /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_uart.h
 
 /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h:
 
@@ -109,5 +99,3 @@ Middlewares/Third_Party/FatFs/src/option/syscall.o: \
 /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim_ex.h:
 
 /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_uart.h:
-
-/Users/thomaswatson/projects/121gw/121gw-template/Inc/bsp_driver_sd.h:

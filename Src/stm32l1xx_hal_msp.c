@@ -44,6 +44,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32l1xx_hal.h"
 
+extern DMA_HandleTypeDef hdma_sd_mmc;
+
 extern void Error_Handler(void);
 /* USER CODE BEGIN 0 */
 
@@ -98,12 +100,20 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
   
     /**ADC GPIO Configuration    
     PA4     ------> ADC_IN4
-    PA5     ------> ADC_IN5 
+    PA5     ------> ADC_IN5
+    PF11     ------> ADC_IN1b
+    PF13     ------> ADC_IN3b
+    PF14     ------> ADC_IN6b 
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_5;
+    GPIO_InitStruct.Pin = THERMISTOR_Pin|LOW_BAT_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+    GPIO_InitStruct.Pin = SCH_UNCONNECTED_B_Pin|SCH_UNCONNECTED_C_Pin|SCH_UNCONNECTED_D_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
 
   /* USER CODE BEGIN ADC1_MspInit 1 */
 
@@ -125,9 +135,14 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
   
     /**ADC GPIO Configuration    
     PA4     ------> ADC_IN4
-    PA5     ------> ADC_IN5 
+    PA5     ------> ADC_IN5
+    PF11     ------> ADC_IN1b
+    PF13     ------> ADC_IN3b
+    PF14     ------> ADC_IN6b 
     */
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_4|GPIO_PIN_5);
+    HAL_GPIO_DeInit(GPIOA, THERMISTOR_Pin|LOW_BAT_Pin);
+
+    HAL_GPIO_DeInit(GPIOF, SCH_UNCONNECTED_B_Pin|SCH_UNCONNECTED_C_Pin|SCH_UNCONNECTED_D_Pin);
 
   }
   /* USER CODE BEGIN ADC1_MspDeInit 1 */
@@ -326,6 +341,40 @@ void HAL_LCD_MspDeInit(LCD_HandleTypeDef* hlcd)
 
 }
 
+void HAL_RTC_MspInit(RTC_HandleTypeDef* hrtc)
+{
+
+  if(hrtc->Instance==RTC)
+  {
+  /* USER CODE BEGIN RTC_MspInit 0 */
+
+  /* USER CODE END RTC_MspInit 0 */
+    /* Peripheral clock enable */
+    __HAL_RCC_RTC_ENABLE();
+  /* USER CODE BEGIN RTC_MspInit 1 */
+
+  /* USER CODE END RTC_MspInit 1 */
+  }
+
+}
+
+void HAL_RTC_MspDeInit(RTC_HandleTypeDef* hrtc)
+{
+
+  if(hrtc->Instance==RTC)
+  {
+  /* USER CODE BEGIN RTC_MspDeInit 0 */
+
+  /* USER CODE END RTC_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_RTC_DISABLE();
+  }
+  /* USER CODE BEGIN RTC_MspDeInit 1 */
+
+  /* USER CODE END RTC_MspDeInit 1 */
+
+}
+
 void HAL_SD_MspInit(SD_HandleTypeDef* hsd)
 {
 
@@ -357,6 +406,28 @@ void HAL_SD_MspInit(SD_HandleTypeDef* hsd)
     GPIO_InitStruct.Alternate = GPIO_AF12_SDIO;
     HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
+    /* Peripheral DMA init*/
+  
+    hdma_sd_mmc.Instance = DMA2_Channel4;
+    hdma_sd_mmc.Init.Direction = DMA_PERIPH_TO_MEMORY;
+    hdma_sd_mmc.Init.PeriphInc = DMA_PINC_DISABLE;
+    hdma_sd_mmc.Init.MemInc = DMA_MINC_ENABLE;
+    hdma_sd_mmc.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
+    hdma_sd_mmc.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;
+    hdma_sd_mmc.Init.Mode = DMA_NORMAL;
+    hdma_sd_mmc.Init.Priority = DMA_PRIORITY_LOW;
+    if (HAL_DMA_Init(&hdma_sd_mmc) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    /* Several peripheral DMA handle pointers point to the same DMA handle.
+     Be aware that there is only one channel to perform all the requested DMAs. */
+    /* Be sure to change transfer direction before calling
+     HAL_SD_ReadBlocks_DMA or HAL_SD_WriteBlocks_DMA. */
+    __HAL_LINKDMA(hsd,hdmarx,hdma_sd_mmc);
+    __HAL_LINKDMA(hsd,hdmatx,hdma_sd_mmc);
+
   /* USER CODE BEGIN SDIO_MspInit 1 */
 
   /* USER CODE END SDIO_MspInit 1 */
@@ -384,10 +455,69 @@ void HAL_SD_MspDeInit(SD_HandleTypeDef* hsd)
 
     HAL_GPIO_DeInit(GPIOD, GPIO_PIN_2);
 
+    /* Peripheral DMA DeInit*/
+    HAL_DMA_DeInit(hsd->hdmarx);
+    HAL_DMA_DeInit(hsd->hdmatx);
   }
   /* USER CODE BEGIN SDIO_MspDeInit 1 */
 
   /* USER CODE END SDIO_MspDeInit 1 */
+
+}
+
+void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
+{
+
+  if(htim_base->Instance==TIM2)
+  {
+  /* USER CODE BEGIN TIM2_MspInit 0 */
+
+  /* USER CODE END TIM2_MspInit 0 */
+    /* Peripheral clock enable */
+    __HAL_RCC_TIM2_CLK_ENABLE();
+  /* USER CODE BEGIN TIM2_MspInit 1 */
+
+  /* USER CODE END TIM2_MspInit 1 */
+  }
+  else if(htim_base->Instance==TIM3)
+  {
+  /* USER CODE BEGIN TIM3_MspInit 0 */
+
+  /* USER CODE END TIM3_MspInit 0 */
+    /* Peripheral clock enable */
+    __HAL_RCC_TIM3_CLK_ENABLE();
+  /* USER CODE BEGIN TIM3_MspInit 1 */
+
+  /* USER CODE END TIM3_MspInit 1 */
+  }
+
+}
+
+void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)
+{
+
+  if(htim_base->Instance==TIM2)
+  {
+  /* USER CODE BEGIN TIM2_MspDeInit 0 */
+
+  /* USER CODE END TIM2_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_TIM2_CLK_DISABLE();
+  /* USER CODE BEGIN TIM2_MspDeInit 1 */
+
+  /* USER CODE END TIM2_MspDeInit 1 */
+  }
+  else if(htim_base->Instance==TIM3)
+  {
+  /* USER CODE BEGIN TIM3_MspDeInit 0 */
+
+  /* USER CODE END TIM3_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_TIM3_CLK_DISABLE();
+  /* USER CODE BEGIN TIM3_MspDeInit 1 */
+
+  /* USER CODE END TIM3_MspDeInit 1 */
+  }
 
 }
 

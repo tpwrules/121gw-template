@@ -25,8 +25,12 @@ Src/stm32l1xx_it.o: ../Src/stm32l1xx_it.c \
  /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_lcd.h \
  /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_pwr.h \
  /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_pwr_ex.h \
+ /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_rtc.h \
+ /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_rtc_ex.h \
  /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_sd.h \
  /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_ll_sdmmc.h \
+ /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim.h \
+ /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim_ex.h \
  /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_uart.h \
  /Users/thomaswatson/projects/121gw/121gw-template/Inc/stm32l1xx_it.h
 
@@ -82,9 +86,17 @@ Src/stm32l1xx_it.o: ../Src/stm32l1xx_it.c \
 
 /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_pwr_ex.h:
 
+/Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_rtc.h:
+
+/Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_rtc_ex.h:
+
 /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_sd.h:
 
 /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_ll_sdmmc.h:
+
+/Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim.h:
+
+/Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_tim_ex.h:
 
 /Users/thomaswatson/projects/121gw/121gw-template/Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_uart.h:
 
