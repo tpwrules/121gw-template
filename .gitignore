@@ -1,4 +1,5 @@
 .DS_Store
+.osx.project
 /Debug/*
 /Release/*
 
